@@ -35,8 +35,8 @@ class Queue():
             song = None
 
         if song:
-            new_index = self.db_queue['song_list'].index(song)
-            self.db_queue['cur_song_index'] = new_index
+            cur_index = self.db_queue['song_list'].index(song)
+            self.db_queue['cur_song_index'] = cur_index
             return get_audio_source(song)
         
         return None

@@ -107,6 +107,13 @@ class Music(commands.Cog):
         else:
             await ctx.send('Lista ta vaziaça.')
 
+    @commands.command()
+    async def apaga(self, ctx, *, query=''):
+        await ctx.trigger_typing()
+        self.queue.remove(query)
+        await ctx.send('Foi tudo que cê pediu.')
+
+
     def play_next(self, ctx):
         if ctx.voice_client:
             source = self.queue.next()
