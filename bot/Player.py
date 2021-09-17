@@ -24,7 +24,7 @@ class Player(commands.Cog):
     @commands.command()
     async def diz(self, ctx, *, query):
         source = TTSSource.from_str(query)
-        self.play(ctx, source)
+        await self.play(ctx, source)
 
     @commands.command()
     async def toca(self, ctx, *, query):
@@ -86,8 +86,11 @@ class Player(commands.Cog):
         if ctx.voice_client.is_playing():
             ctx.voice_client.source = source
         else:
-            ctx.voice_client.play(source, after=lambda e: self.play_next(ctx))
-        await ctx.send(f'Tocando {source.title}')
+            if hasattr(source, 'title'):
+                ctx.voice_client.play(source, after=lambda e: self.play_next(ctx))
+                await ctx.send(f'Tocando {source.title}')
+            else:
+                ctx.voice_client.play(source)
 
     async def skip(self, ctx, foward=True):
         if ctx.voice_client:
@@ -182,7 +185,7 @@ class Player(commands.Cog):
             await ctx.send('Sei que config é essa ai não.')
 
 
-
+    @diz.before_invoke
     async def ensure_voice(self, ctx):
         if ctx.voice_client is None:
             # print('entrou')

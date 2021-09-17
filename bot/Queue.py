@@ -46,6 +46,9 @@ class Queue():
             song for song in self.db_queue['song_list']
             if query.lower() not in song['title'].lower()
         ]
+    
+    def should_keep_played(self, boolean):
+        self.db_queue['keep_played'] = boolean
         
     def __try_get_index(self):
         try:

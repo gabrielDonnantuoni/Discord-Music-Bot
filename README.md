@@ -49,8 +49,16 @@ Create an account on *Uptime Robot* and add an new monitor for the url of your r
     .ava apaga tenho medo //will delete 'Tenho Medo - Zé Vaqueiro (Vídeo Oficial)'
     .ava apaga //will delete all.
     ```
+    - config: Receives the config option and value.
 
+    Examples:
+    ```
+    .ava config keep_played true //current only config type
+    .ava config keep_played false
+    ```
     - lista: Print to chat all the current songs on list/queue.
+
+    - diz: Receives text and play it on voice channel.
 
     - proxima(alias=prox): Skip to next song on list/queue.
     
@@ -61,5 +69,6 @@ Create an account on *Uptime Robot* and add an new monitor for the url of your r
     - continua: Resume song, if paused.
 
     - vaza: Disconnect voice from channel, if connected.
+
 
 
